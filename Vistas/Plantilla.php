@@ -67,7 +67,8 @@ if(isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true){
 if(isset($_GET["url"])){
   $url = explode("/", $_GET["url"]);
 
-  if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"){
+  if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"
+  || $url[0] == "Estudiantes"){
     include "modulos/" .$url[0].".php";
   }
 }else{
@@ -80,6 +81,9 @@ if(isset($_GET["url"])){
   if($_GET["url"] == "Ingresar"){
 
     include "modulos/Ingresar.php";
+  }else if($_GET["url"] == "Crear-Cuenta"){
+
+    include "modulos/Crear-Cuenta.php";
   }else{
     include "modulos/Ingresar.php";
   }

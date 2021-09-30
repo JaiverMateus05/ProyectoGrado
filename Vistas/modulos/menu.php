@@ -29,7 +29,7 @@
       </li>
 
       <li>
-        <a href="http://localhost/Aulas/">
+        <a href="http://localhost/Aulas/Estudiantes">
 
         <i class="fa fa-book"></i>
         <span>Estudiantes</span>

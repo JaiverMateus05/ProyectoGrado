@@ -8,6 +8,7 @@
         <p class="loggin-box-msg'">Ingresar al Sistema</p>
 
         <form method="post">
+            
             <div class="form-group has-feedback">
 
                 <input type="text" class="form-control" name="usuario" placeholder="Usuario">
@@ -24,15 +25,18 @@
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
                 </div>
                 <div class="col-xs-6">
-                    <button type="submit" class="btn btn-default btn-block btn-flat">Crear Cuenta</button>
+                    <a href="Crear-Cuenta">
+                        <button type="button" class="btn btn-default btn-block btn-flat">Crear Cuenta</button>
+                    </a>
+
                 </div>
 
             </div>
-<?php
+            <?php
             $ingresar = new UsuariosC();
-            $ingresar -> IniciarSesionC();
+            $ingresar->IniciarSesionC();
 
-?>
+            ?>
 
 
         </form>

@@ -39,7 +39,7 @@ if ($_SESSION["rol"] != "Administrador") {
                 </a>
                 <br><br>
 
-                <table class="table table-bordered table-hover table-striped">
+                <table class="table table-bordered table-hover table-striped dt-responsive">
 
                     <thead>
                         <tr>

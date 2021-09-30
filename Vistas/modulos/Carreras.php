@@ -65,7 +65,7 @@ if ($_SESSION["rol"] != "Administrador") {
                               <a href="Carreras/'.$value["id"].'">
                               <button class="btn btn-danger">Borrar</button>
                              </a>
-                              <a href="">
+                              <a href="Estudiantes/'.$value["id"].'">
                               <button class="btn btn-primary">Estudiantes</button>
                                </a>
     
