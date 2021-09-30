@@ -21,7 +21,7 @@
       </li>
 
       <li>
-        <a href="http://localhost/Aulas/">
+        <a href="http://localhost/Aulas/Carreras">
 
         <i class="fa fa-graduation-cap"></i>
         <span>Carreras</span>

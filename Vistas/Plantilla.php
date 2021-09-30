@@ -67,7 +67,7 @@ if(isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true){
 if(isset($_GET["url"])){
   $url = explode("/", $_GET["url"]);
 
-  if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios"){
+  if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"){
     include "modulos/" .$url[0].".php";
   }
 }else{
