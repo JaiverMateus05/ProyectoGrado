@@ -34,6 +34,8 @@ session_start();
   <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
   <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
+  <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/select2/dist/css/select2.min.css">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -61,14 +63,20 @@ if(isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true){
   echo '<div class="wrapper">';
 
   include "modulos/cabecera.php";
-  include "modulos/menu.php";
+
+  if($_SESSION["rol"] == "Administrador"){
+    include "modulos/menu.php";
+  }else if($_SESSION["rol"] == "Estudiante"){
+    include "modulos/menuE.php";
+  }
+  
 
   $url = array();
 if(isset($_GET["url"])){
   $url = explode("/", $_GET["url"]);
 
   if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"
-  || $url[0] == "Estudiantes"){
+  || $url[0] == "Estudiantes" || $url[0] == "Aulas" || $url[0] == "Aulas-Virtuales"){
     include "modulos/" .$url[0].".php";
   }
 }else{
@@ -139,6 +147,8 @@ if(isset($_GET["url"])){
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
+<script src="http://localhost/Aulas/Vistas/bower_components/select2/dist/js/select2.full.min.js"></script>
+
 <script src="http://localhost/Aulas/Vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 
 <script src="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -147,5 +157,7 @@ if(isset($_GET["url"])){
 <script src="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
 
 <script src="http://localhost/Aulas/Vistas/js/usuarios.js"></script>
+
+<script src="http://localhost/Aulas/Vistas/js/aulas.js"></script>
 </body>
 </html>

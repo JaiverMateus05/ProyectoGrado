@@ -44,6 +44,7 @@
                   
                     echo '<small>'.$_SESSION["rol"].'</small>';
                   
+                    
                
                 echo'</p>';
 

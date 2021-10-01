@@ -37,7 +37,7 @@
       </li>
       
       <li>
-        <a href="http://localhost/Aulas/">
+        <a href="http://localhost/Aulas/Aulas">
 
         <i class="fa fa-university"></i>
         <span>Aulas</span>
@@ -54,4 +54,4 @@
       </ul>
     </section>
     <!-- /.sidebar -->
-  </aside>
+</aside>
