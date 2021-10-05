@@ -5,6 +5,11 @@ session_start();
 
 <!DOCTYPE html>
 <html>
+  <script type="text/javascript">
+  document.oncontextmenu = function(){
+  return false;
+}
+  </script>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
