@@ -73,6 +73,9 @@ if(isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true){
     include "modulos/menu.php";
   }else if($_SESSION["rol"] == "Estudiante"){
     include "modulos/menuE.php";
+  }else{
+    include "modulos/menuP.php";
+
   }
   
 
@@ -81,7 +84,8 @@ if(isset($_GET["url"])){
   $url = explode("/", $_GET["url"]);
 
   if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"
-  || $url[0] == "Estudiantes" || $url[0] == "Aulas" || $url[0] == "Aulas-Virtuales"|| $url[0] == "Inscribir" || $url[0] == "Aula"){
+  || $url[0] == "Estudiantes" || $url[0] == "Aulas" || $url[0] == "Aulas-Virtuales"|| $url[0] == "Inscribir" || $url[0] == "Aula" 
+  || $url[0] == "Mis-Aulas" || $url[0] == "Inscritos"){
     include "modulos/" .$url[0].".php";
   }
 }else{

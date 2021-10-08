@@ -34,6 +34,23 @@ class AlumnosC{
             }
         }
     }
+
+    static public function VerInscritosC($columna, $valor){
+        $tablaBD = "inscripciones";
+
+        $resultado = AlumnosM::VerInscritosM($tablaBD, $columna, $valor);
+
+        return $resultado;
+    }
+
+    static public function VerInscritoC($columna,$valor,$columna2,$valor2){
+        $tablaBD = "inscripciones";
+
+        $resultado = AlumnosM::VerInscritoM($tablaBD,$columna,$valor,$columna2,$valor2);
+        
+            return $resultado;
+        
+    }
 }
 
 
