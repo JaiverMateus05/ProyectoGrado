@@ -29,6 +29,17 @@ class AulasM extends ConexionBD{
         $pdo = null;
     }
 
+    static public function VerAulas2M($tablaBD, $columna, $valor){
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD WHERE $columna = :$columna");
+        $pdo -> bindParam(":".$columna, $valor, PDO::PARAM_STR);
+
+        $pdo -> execute();
+
+        return $pdo -> fetch();
+
+        $pdo = null;
+    }
+
     static public function BorrarAulaM($tablaBD,$id){
         $pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = $id");
 

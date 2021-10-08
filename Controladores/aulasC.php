@@ -39,6 +39,12 @@ class AulasC{
         return $resultado;
     }
 
+    static public function VerAulas2C($columna, $valor){
+        $tablaBD = "aulas";
+        $resultado = AulasM::VerAulas2M($tablaBD,$columna, $valor);
+        return $resultado;
+    }
+
     public function BorrarAulaC(){
 
         if(isset($_GET["Aid"])){
