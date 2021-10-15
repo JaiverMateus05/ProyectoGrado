@@ -15,5 +15,8 @@ require_once "Modelos/aulasM.php";
 require_once "Controladores/alumnosC.php";
 require_once "Modelos/alumnosM.php";
 
+require_once "Controladores/seccionesC.php";
+require_once "Modelos/seccionesM.php";
+
 $plantilla = new Plantilla();
 $plantilla -> LlamarPlantilla();
