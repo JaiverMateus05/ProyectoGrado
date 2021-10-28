@@ -85,7 +85,7 @@ if(isset($_GET["url"])){
 
   if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"
   || $url[0] == "Estudiantes" || $url[0] == "Aulas" || $url[0] == "Aulas-Virtuales"|| $url[0] == "Inscribir" || $url[0] == "Aula" 
-  || $url[0] == "Mis-Aulas" || $url[0] == "Inscritos"){
+  || $url[0] == "Mis-Aulas" || $url[0] == "Inscritos" || $url[0] == "D-S"){
     include "modulos/" .$url[0].".php";
   }
 }else{
@@ -156,6 +156,8 @@ if(isset($_GET["url"])){
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
+<script src="http://localhost/Aulas/Vistas/bower_components/ckeditor/ckeditor.js"></script>
+
 <script src="http://localhost/Aulas/Vistas/bower_components/select2/dist/js/select2.full.min.js"></script>
 
 <script src="http://localhost/Aulas/Vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -168,5 +170,8 @@ if(isset($_GET["url"])){
 <script src="http://localhost/Aulas/Vistas/js/usuarios.js"></script>
 
 <script src="http://localhost/Aulas/Vistas/js/aulas.js"></script>
+
+<script src="http://localhost/Aulas/Vistas/js/secciones.js"></script>
+
 </body>
 </html>
