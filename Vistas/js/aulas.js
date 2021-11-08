@@ -19,3 +19,10 @@ $(".row").on("click",".EliminarAula", function(){
         }
     })
 })
+
+
+$("#date").datepicker({
+
+    autoclose: true
+    
+})
