@@ -5,10 +5,10 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   document.oncontextmenu = function(){
   return false;
-}
+} -->
   </script>
 <head>
   <meta charset="utf-8">
@@ -32,7 +32,7 @@ session_start();
   <!-- jvectormap -->
   <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   
@@ -40,6 +40,9 @@ session_start();
   <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <link rel="stylesheet" href="http://localhost/Aulas/Vistas/bower_components/select2/dist/css/select2.min.css">
+
+
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,7 +88,7 @@ if(isset($_GET["url"])){
 
   if($url[0] == "Inicio" || $url[0] == "Salir" || $url[0] == "Mis-Datos" || $url[0] == "Usuarios" || $url[0] == "Carreras" || $url[0] == "Editar-Carrera"
   || $url[0] == "Estudiantes" || $url[0] == "Aulas" || $url[0] == "Aulas-Virtuales"|| $url[0] == "Inscribir" || $url[0] == "Aula" 
-  || $url[0] == "Mis-Aulas" || $url[0] == "Inscritos" || $url[0] == "D-S"){
+  || $url[0] == "Mis-Aulas" || $url[0] == "Inscritos" || $url[0] == "D-S" || $url[0] == "Tarea" || $url[0] == "Entregas"){
     include "modulos/" .$url[0].".php";
   }
 }else{
@@ -166,6 +169,9 @@ if(isset($_GET["url"])){
 <script src="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
 
 <script src="http://localhost/Aulas/Vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
+
+
+
 
 <script src="http://localhost/Aulas/Vistas/js/usuarios.js"></script>
 
