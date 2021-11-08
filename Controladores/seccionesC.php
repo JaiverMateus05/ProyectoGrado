@@ -78,7 +78,7 @@ class SeccionesC{
 
                 $nombre = mt_rand(10, 999);
 
-                $rutaArchivo = "Vistas/Archivos/".$nombre.".pdf";
+                $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre.".pdf";
 
                 move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
             }
@@ -86,7 +86,7 @@ class SeccionesC{
 
                 $nombre = mt_rand(10, 999);
 
-                $rutaArchivo = "Vistas/Archivos/".$nombre.".doc";
+                $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre.".doc";
 
                 move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
             }
@@ -94,7 +94,7 @@ class SeccionesC{
 
                 $nombre = mt_rand(10, 999);
 
-                $rutaArchivo = "Vistas/Archivos/".$nombre.".xlsx";
+                $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre.".xlsx";
 
                 move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
             }
@@ -134,6 +134,93 @@ class SeccionesC{
             unlink($_POST["archivo"]);
 
             $resultado = SeccionesM::borrarArchivoM($tablaBD, $id);
+
+            if($resultado == true){
+                echo '<script>
+                
+                window.location = "http://localhost/Aulas/Aula/'.$_POST["id_a"].'";
+                
+                </script>';
+            }
+        }
+    }
+
+    public function BorrarTareaC(){
+        if(isset($_POST["idT"])){
+            $tablaBD = "tareas";
+
+            $id = $_POST["idT"];
+
+            $resultado = SeccionesM::BorrarTareaM($tablaBD, $id);
+
+            $tablaBD2= "tarea";
+            $resultado2 =SeccionesM::BorrarTareasM($tablaBD2, $id);
+
+            $dirT = "Vistas/Tareas";
+            foreach(glob($dirT."/*-".$id."-*.*") as $tareas){
+
+                unlink($tareas);
+            }
+            $tablaBD3= "entregas";
+            $resultado3 =SeccionesM::BorrarEntregasM($tablaBD3, $id);
+
+            $dirE = "Vistas/Entregas";
+            foreach(glob($dirE."/*-".$id."-*.*") as $entregas){
+
+                unlink($entregas);
+            }
+            $tablaBD4 ="notas";
+            $resultado4 = SeccionesM::BorrarNotaM($tablaBD4,$id);
+
+            if($resultado == true){
+                echo '<script>
+                
+                window.location = "http://localhost/Aulas/Aula/'.$_POST["idAula"].'";
+                
+                </script>';
+            }
+        }
+    }
+
+    public function BorrarSeccionC(){
+
+        if(isset($_POST["idS"])){
+            $tablaBD = "tareas";
+
+            $id = $_POST["idS"];
+
+            $resultado = SeccionesM::BorrarTarea2M($tablaBD, $id);
+
+            $tablaBD2= "tarea";
+            $resultado2 =SeccionesM::BorrarTareas2M($tablaBD2, $id);
+
+            $dirT = "Vistas/Tareas";
+            foreach(glob($dirT."/".$id."-*-*.*") as $tareas){
+
+                unlink($tareas);
+            }
+            $tablaBD3= "entregas";
+            $resultado3 =SeccionesM::BorrarEntregas2M($tablaBD3, $id);
+
+            $dirE = "Vistas/Entregas";
+            foreach(glob($dirE."/".$id."-*-*.*") as $entregas){
+
+                unlink($entregas);
+            }
+            $tablaBD4 ="notas";
+            $resultado4 = SeccionesM::BorrarNota2M($tablaBD4,$id);
+
+            $tablaBD5 = "archivos";
+            $resultado5 = SeccionesM::BorrarArchivo2M($tablaBD5, $id);
+
+            $tablaBD6 = "secciones";
+            $resultado6 = SeccionesM::BorrarSeccionM($tablaBD6, $id);
+
+            $dirA = "Vistas/Archivos";
+            foreach(glob($dirA."/".$id."-*.*") as $archivos){
+
+                unlink($archivos);
+            }
 
             if($resultado == true){
                 echo '<script>
