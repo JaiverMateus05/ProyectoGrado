@@ -30,7 +30,7 @@ foreach($insc as $key => $value){
 
         foreach($aula as $key => $value){
             if($value["id"] == $exp[1]){
-                echo '<h1>No te encuentras incrito en el aula:<b>'.$value["materia"].'</b></h1>
+                echo '<h1>No te encuentras inscrito en el aula:<b>'.$value["materia"].'</b></h1>
                 <br>';
 
                 echo '<form method="post">

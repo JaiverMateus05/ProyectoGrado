@@ -1,6 +1,6 @@
 <div class="login-box">
 
-    <div class="login-logo">
+    <div class="login-logo" style="color:aliceblue">
 
         <h1>Clases Online</h1>
     </div>

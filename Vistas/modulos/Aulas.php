@@ -81,7 +81,7 @@ if ($_SESSION["rol"] != "Administrador") {
 
                     foreach ($resultado as $key => $value) {
                         echo '<div class="col-lg-3 col-xs-6">
-<div class="small-box bg-green">
+<div class="small-box  bg-blue">
     <button class="btn btn-danger pull-right EliminarAula" Aid="'.$value["id"].'" data-toggle="tooltip" title="Eliminar"><i class="fa fa-times"></i></button>
 <div class="inner">
     <h4>'.$value["materia"].'</h4>';
