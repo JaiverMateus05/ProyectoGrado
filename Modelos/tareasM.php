@@ -107,7 +107,7 @@ class TareasM extends ConexionBD{
 
     static public function EntregarTareaM($tablaBD, $datosC){
 
-        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(id_alumno, id_tarea, tarea_alumno, id_seccion) VALUES (:id_alumno, :id_tarea, :tarea_alumno, id_seccion)");
+        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(id_alumno, id_tarea, tarea_alumno, id_seccion) VALUES (:id_alumno, :id_tarea, :tarea_alumno, :id_seccion)");
 
         $pdo -> bindParam(":id_tarea", $datosC["id_tarea"], PDO::PARAM_INT);
         $pdo -> bindParam(":id_alumno", $datosC["id_alumno"], PDO::PARAM_INT);

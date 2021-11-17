@@ -42,7 +42,7 @@ class AlumnosM extends ConexionBD{
     }
 
     static public function VerInscritoM($tablaBD,$columna,$valor,$columna2,$valor2){
-        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD WHERE $columna = :$columna AND $columna = :$columna2");
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD WHERE $columna = :$columna AND $columna2 = :$columna2");
         $pdo -> bindParam(":".$columna,$valor, PDO::PARAM_STR);
         $pdo -> bindParam(":".$columna2,$valor2, PDO::PARAM_STR);
         $pdo -> execute();
