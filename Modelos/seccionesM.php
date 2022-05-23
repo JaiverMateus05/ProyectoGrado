@@ -2,7 +2,7 @@
 
 require_once "ConexionBD.php";
 
-class SeccionesM extends ConexionBD{
+class SeccionesM{
 
     static public function CrearSeccionM($tablaBD, $datosC){
         $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(id_aula, nombre) VALUES (:id_aula, :nombre)");

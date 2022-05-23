@@ -3,7 +3,7 @@
 
 class ConexionBD{
 
-    public function cBD(){
+    public static function cBD(){
         
         $bd = new PDO("mysql:host=localhost;dbname=aulas","root","");
 

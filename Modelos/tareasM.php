@@ -2,7 +2,7 @@
 
 require_once "ConexionBD.php";
 
-class TareasM extends ConexionBD{
+class TareasM{
 
     static public function AgregarTareaM($tablaBD, $datosC){
 

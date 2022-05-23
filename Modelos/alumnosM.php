@@ -2,10 +2,9 @@
 
 require_once "ConexionBD.php";
 
-class AlumnosM extends ConexionBD{
+class AlumnosM{
     static public function InscribirmeM($tablaBD, $datosC){
         $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(id_alumno, id_aula) VALUES (:id_alumno,:id_aula) ");
-
         $pdo -> bindParam(":id_aula", $datosC["id_aula"], PDO::PARAM_INT);
         $pdo -> bindParam(":id_alumno", $datosC["id_alumno"], PDO::PARAM_INT);
 

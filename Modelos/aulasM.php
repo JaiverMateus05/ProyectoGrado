@@ -3,7 +3,7 @@
 require_once "ConexionBD.php";
 
 
-class AulasM extends ConexionBD{
+class AulasM{
 
     static public function CrearAulaM($tablaBD,$datosC){
 

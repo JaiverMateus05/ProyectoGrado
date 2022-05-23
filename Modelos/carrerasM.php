@@ -2,7 +2,7 @@
 
 require_once "ConexionBD.php";
 
-class CarrerasM extends ConexionBD{
+class CarrerasM{
     static public function CrearCarreraM($tablaBD, $carrera){
 
         $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (nombre) VALUES (:nombre)");

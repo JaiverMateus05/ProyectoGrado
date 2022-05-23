@@ -2,7 +2,7 @@
 
 require_once "ConexionBD.php";
 
-class UsuariosM extends ConexionBD
+class UsuariosM
 {
 
 
