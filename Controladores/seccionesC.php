@@ -71,7 +71,7 @@ class SeccionesC{
 
     public function  AgregarArchivoC(){
 
-        if(isset($_POST["nombreA"])){
+        /* if(isset($_POST["nombreA"])){
             $rutaArchivo = "";
 
             if($_FILES["archivo"]["type"] == "application/pdf"){
@@ -98,8 +98,31 @@ class SeccionesC{
 
                 move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
             }
-            
+            if($_FILES["archivo"]["type"] == "image/jpeg"){
 
+                $nombre = mt_rand(10, 999);
+
+                $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre.".jpeg";
+
+                move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
+            }
+            if($_FILES["archivo"]["type"] == "image/jpg"){
+
+                $nombre = mt_rand(10, 999);
+
+                $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre.".jpg";
+
+                move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
+            }
+            if($_FILES["archivo"]["type"] == "image/png"){
+
+                $nombre = mt_rand(10, 999);
+
+                $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre.".png";
+
+                move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
+            }
+            
             $tablaBD = "archivos";
 
             $datosC = array("nombre"=>$_POST["nombreA"], "id_seccion"=>$_POST["id_s"], "archivo"=>$rutaArchivo);
@@ -113,7 +136,82 @@ class SeccionesC{
                 
                 </script>';
             }
+        } */
+        if(isset($_POST["nombreA"])){
+
+            $archivo = $_FILES['archivo'];
+
+            $ANombre = $_FILES['archivo']['name'];
+            $ATmpnombre = $_FILES['archivo']['tmp_name'];
+            $ATamaño = $_FILES['archivo']['size'];
+            $AError = $_FILES['archivo']['error'];
+            $ATipo = $_FILES['archivo']['type'];
+
+            $fileExt = explode('.', $ANombre);
+            $fileActualExt = strtolower(end($fileExt));
+
+            $allowed = array('jpg', 'jpeg', 'png','pdf', 'xls','docx', 'xlsx', 'pptx', 'gns3');
+
+            if(in_array($fileActualExt, $allowed)){
+                if($AError === 0){
+                    if($ATamaño < 50000000){
+                        $nombre = mt_rand(10, 999).".".$fileActualExt;
+                        $rutaArchivo = "Vistas/Archivos/".$_POST["id_s"]."-".$nombre;
+                        move_uploaded_file($_FILES["archivo"]["tmp_name"], $rutaArchivo);
+
+                        $tablaBD = "archivos";
+
+                        $datosC = array("nombre"=>$_POST["nombreA"], "id_seccion"=>$_POST["id_s"], "archivo"=>$rutaArchivo);
+            
+                        $resultado = SeccionesM::AgregarArchivoM($tablaBD, $datosC);
+            
+                        if($resultado == true){
+                            echo '<script>
+                            
+                            window.location = "http://localhost/Aulas/Aula/'.$_POST["id_a"].'";
+                            
+                            </script>';
+                        }
+
+                    }else{
+                        echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "El archivo es demasiado grande",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    }
+
+                }else{
+                    '<script>
+                        swal({
+                            type: "warning",
+                            title: "Hubo un error subiendo tu archivo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    
+                }
+
+            }else{
+                echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "No puedes subir archivos de este tipo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                
+            }
+
+
         }
+
+
     }
 
     static public function VerArchivosC($columna, $valor){

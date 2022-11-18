@@ -62,49 +62,170 @@ class TareasC{
 
     public function SubirTareaC(){
         if(isset($_POST["nombre"])){
-            $rutaArchivo = "";
 
-            if($_FILES["tarea"]["type"] == "application/pdf"){
+            $tarea = $_FILES['tarea'];
 
-                $nombre = mt_rand(10, 999);
+            $ANombre = $_FILES['tarea']['name'];
+            $ATmpnombre = $_FILES['tarea']['tmp_name'];
+            $ATamaño = $_FILES['tarea']['size'];
+            $AError = $_FILES['tarea']['error'];
+            $ATipo = $_FILES['tarea']['type'];
 
-                $rutaArchivo = "Vistas/Tareas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$nombre.".pdf";
+            $fileExt = explode('.', $ANombre);
+            $fileActualExt = strtolower(end($fileExt));
 
-                move_uploaded_file($_FILES["tarea"]["tmp_name"], $rutaArchivo);
+            $allowed = array('jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx', 'gns3','pdf', 'xls');
+
+            if(in_array($fileActualExt, $allowed)){
+                if($AError === 0){
+                    if($ATamaño < 500000){
+                        $tarea = mt_rand(10, 999).".".$fileActualExt;
+                        $rutaArchivo = "Vistas/Tareas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$tarea;
+                        move_uploaded_file($_FILES["tarea"]["tmp_name"], $rutaArchivo);
+
+                        $tablaBD = "tarea";
+
+                        $datosC = array("nombre"=>$_POST["nombre"], "id_tarea"=>$_POST["id_tarea"], "id_seccion"=>$_POST["id_seccion"], "tarea"=> $rutaArchivo);
+            
+                        $resultado = TareasM::SubirTareaM($tablaBD, $datosC);
+            
+                        if($resultado == true){
+            
+                            echo '<script>
+                            
+                            window.location = "http://localhost/Aulas/Tarea/'.$_POST["id_tarea"].'";
+                            </script>';
+                        }
+
+                    }else{
+                        echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "El archivo es demasiado grande",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    }
+
+                }else{
+                    '<script>
+                        swal({
+                            type: "warning",
+                            title: "Hubo un error subiendo tu archivo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    
+                }
+
+            }else{
+                echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "No puedes subir archivos de este tipo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                
             }
-            if($_FILES["tarea"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"){
 
-                $nombre = mt_rand(10, 999);
 
-                $rutaArchivo = "Vistas/Tareas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$nombre.".doc";
+        }
+    }
 
-                move_uploaded_file($_FILES["tarea"]["tmp_name"], $rutaArchivo);
-            }
-            if($_FILES["tarea"]["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
+    static public function GuardarCambiosC(){
+        if(isset($_POST["id"])){
+            $tablaBD = "tareas";
 
-                $nombre = mt_rand(10, 999);
+            $datosC = array("id"=>$_POST["id"],"nombre"=>$_POST["nombre"], "fecha_limite"=>$_POST["fecha_limite"], "descripcion"=>$_POST["descripcion"]);
 
-                $rutaArchivo = "Vistas/Tareas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$nombre.".xlsx";
-
-                move_uploaded_file($_FILES["tarea"]["tmp_name"], $rutaArchivo);
-            }
-
-            $tablaBD = "tarea";
-
-            $datosC = array("nombre"=>$_POST["nombre"], "id_tarea"=>$_POST["id_tarea"], "id_seccion"=>$_POST["id_seccion"], "tarea"=> $rutaArchivo);
-
-            $resultado = TareasM::SubirTareaM($tablaBD, $datosC);
+            $resultado = TareasM::GuardarCambiosM($tablaBD, $datosC);
 
             if($resultado == true){
 
                 echo '<script>
                 
-                window.location = "http://localhost/Aulas/Tarea/'.$_POST["id_tarea"].'";
+                window.location = "http://localhost/Aulas/Tarea/'.$_POST["id"].'";
                 </script>';
             }
         }
-    }
+            if(isset($_POST["nombre"])){
 
+            $tarea = $_FILES['tarea'];
+
+            $ANombre = $_FILES['tarea']['name'];
+            $ATmpnombre = $_FILES['tarea']['tmp_name'];
+            $ATamaño = $_FILES['tarea']['size'];
+            $AError = $_FILES['tarea']['error'];
+            $ATipo = $_FILES['tarea']['type'];
+
+            $fileExt = explode('.', $ANombre);
+            $fileActualExt = strtolower(end($fileExt));
+
+            $allowed = array('jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx', 'gns3','pdf', 'xls');
+
+            if(in_array($fileActualExt, $allowed)){
+                if($AError === 0){
+                    if($ATamaño < 50000000){
+                        $tarea = mt_rand(10, 999).".".$fileActualExt;
+                        $rutaArchivo = "Vistas/Tareas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$tarea;
+                        move_uploaded_file($_FILES["tarea"]["tmp_name"], $rutaArchivo);
+
+                        $tablaBD = "tarea";
+
+                        $datosC = array("nombre"=>$_POST["nombre"], "id_tarea"=>$_POST["id_tarea"], "id_seccion"=>$_POST["id_seccion"], "tarea"=> $rutaArchivo);
+            
+                        $resultado = TareasM::GuardarCambiosM($tablaBD, $datosC);
+            
+                        if($resultado == true){
+            
+                            echo '<script>
+                            
+                            window.location = "http://localhost/Aulas/Tarea/'.$_POST["id_tarea"].'";
+                            </script>';
+                        }
+
+                    }else{
+                        echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "El archivo es demasiado grande",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    }
+
+                }else{
+                    '<script>
+                        swal({
+                            type: "warning",
+                            title: "Hubo un error subiendo tu archivo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    
+                }
+
+            }else{
+                echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "No puedes subir archivos de este tipo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                
+            }
+
+
+        }
+    }
     static public function VerTC($columna, $valor){
         $tablaBD = "tarea";
 
@@ -114,35 +235,31 @@ class TareasC{
     }
 
     public function EntregarTareaC(){
+       
+
         if(isset($_POST["id_tarea"])){
-            $rutaArchivo = "";
 
-            if($_FILES["tarea_alumno"]["type"] == "application/pdf"){
+            $tarea_alumno = $_FILES['tarea_alumno'];
 
-                $nombre = mt_rand(10, 999);
+            $ANombre = $_FILES['tarea_alumno']['name'];
+            $ATmpnombre = $_FILES['tarea_alumno']['tmp_name'];
+            $ATamaño = $_FILES['tarea_alumno']['size'];
+            $AError = $_FILES['tarea_alumno']['error'];
+            $ATipo = $_FILES['tarea_alumno']['type'];
 
-                $rutaArchivo = "Vistas/Entregas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$nombre.".pdf";
+            $fileExt = explode('.', $ANombre);
+            $fileActualExt = strtolower(end($fileExt));
 
-                move_uploaded_file($_FILES["tarea_alumno"]["tmp_name"], $rutaArchivo);
-            }
-            if($_FILES["tarea_alumno"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document"){
+            $allowed = array('jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pptx', 'gns3','pdf', 'xls');
 
-                $nombre = mt_rand(10, 999);
+            if(in_array($fileActualExt, $allowed)){
+                if($AError === 0){
+                    if($ATamaño < 50000000){
+                        $tarea_alumno = mt_rand(10, 999).".".$fileActualExt;
+                        $rutaArchivo = "Vistas/Entregas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$tarea_alumno;
+                        move_uploaded_file($_FILES["tarea_alumno"]["tmp_name"], $rutaArchivo);
 
-                $rutaArchivo = "Vistas/Entregas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$nombre.".doc";
-
-                move_uploaded_file($_FILES["tarea_alumno"]["tmp_name"], $rutaArchivo);
-            }
-            if($_FILES["tarea_alumno"]["type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"){
-
-                $nombre = mt_rand(10, 999);
-
-                $rutaArchivo = "Vistas/Entregas/".$_POST["id_seccion"]."-".$_POST["id_tarea"]."-".$nombre.".xlsx";
-
-                move_uploaded_file($_FILES["tarea_alumno"]["tmp_name"], $rutaArchivo);
-            }
-
-            $tablaBD = "entregas";
+                        $tablaBD = "entregas";
 
             $datosC = array("id_alumno"=>$_POST["id_alumno"], "id_tarea"=>$_POST["id_tarea"], "id_seccion"=>$_POST["id_seccion"], "tarea_alumno"=> $rutaArchivo);
 
@@ -172,6 +289,43 @@ class TareasC{
                 
                 </script>';
             }
+
+                    }else{
+                        echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "El archivo es demasiado grande",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    }
+
+                }else{
+                    '<script>
+                        swal({
+                            type: "warning",
+                            title: "Hubo un error subiendo tu archivo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                    
+                }
+
+            }else{
+                echo '<script>
+                        swal({
+                            type: "warning",
+                            title: "No puedes subir archivos de este tipo",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar"
+                        })
+                        </script>';
+                
+            }
+
+
         }
     }
 
