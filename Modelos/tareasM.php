@@ -91,6 +91,29 @@ class TareasM{
 
     }
 
+    static public function GuardarCambiosM($tablaBD, $datosC){
+
+        $pdo = ConexionBD::cBD()->prepare("UPDATE $tablaBD SET fecha_limite = :fecha_limite, nombre = :nombre, descripcion = :descripcion WHERE id = :id");
+
+        $pdo -> bindParam(":id", $datosC["id"], PDO::PARAM_INT);
+        $pdo -> bindParam(":fecha_limite", $datosC["fecha_limite"], PDO::PARAM_STR);
+        $pdo -> bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
+        $pdo -> bindParam(":descripcion", $datosC["descripcion"], PDO::PARAM_STR);
+
+        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(nombre, id_tarea, tarea, id_seccion) VALUES (:nombre, :id_tarea, :tarea, :id_seccion)");
+
+        $pdo -> bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
+        $pdo -> bindParam(":id_tarea", $datosC["id_tarea"], PDO::PARAM_INT);
+        $pdo -> bindParam(":tarea", $datosC["tarea"], PDO::PARAM_STR);
+        $pdo -> bindParam(":id_seccion", $datosC["id_seccion"], PDO::PARAM_STR);
+
+        if($pdo -> execute()){
+            return true;
+        }
+
+        $pdo = null;
+    }
+
     static public function VerTM($tablaBD, $columna, $valor){
 
         $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD WHERE $columna = :$columna");
